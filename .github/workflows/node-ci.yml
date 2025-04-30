@@ -14,7 +14,5 @@ jobs:
       - run: npm install
       - run: npm test
       - run: |
-          cd my-node-app
-          ls
           IMAGE_NAME=mydockeruser/my-app
-          docker build -t $IMAGE_NAME:latest .
+          docker build -t $IMAGE_NAME:latest my-node-app/
