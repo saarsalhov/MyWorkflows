@@ -8,9 +8,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - run: |
-          IMAGE_NAME=mydockeruser/my-app
-          docker build -t $IMAGE_NAME:latest .
+      - name: Docker Build
+        run: |
+          docker build -t mydockeruser/my-app .
       - uses: actions/setup-node@v3
         with:
           node-version: '18'
