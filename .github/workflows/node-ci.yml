@@ -13,5 +13,6 @@ jobs:
           node-version: '18'
       - run: npm install
       - run: npm test
-      - uses: docker/setup-buildx-action@v3.10.0
-        
+      - run: |
+          IMAGE_NAME=mydockeruser/my-app
+          docker build -t $IMAGE_NAME:latest .
