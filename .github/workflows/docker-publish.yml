@@ -24,7 +24,6 @@ jobs:
         with:
           context: .
           push: true
-          file: my-node-app/Dockerfile
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-cd-image:latest
 
       - name: Retag with current date and push
