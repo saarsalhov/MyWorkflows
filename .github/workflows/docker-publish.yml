@@ -19,17 +19,28 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-      - name: Retag with current date and push
-        run: |
-          DATE_TAG=$(date +%Y-%m-%d)
-
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
           context: .
           push: true
           file: my-node-app/Dockerfile
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-cd-image:${{env.DATE_TAG}}
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/my-cd-image:latest
+
+      - name: Retag with current date and push
+        run: |
+          IMAGE_NAME=${{ secrets.DOCKERHUB_USERNAME }}/my-cd-image
+
+          # Get current date in YYYY-MM-DD
+          DATE_TAG=$(date -u +"%Y-%m-%d-%H%M")
+
+          echo "Tagging image with date: $DATE_TAG"
+
+          # Retag image
+          docker tag $IMAGE_NAME:latest $IMAGE_NAME:$DATE_TAG
+
+          # Push new tag
+          docker push $IMAGE_NAME:$DATE_TAG
 
       - name: Log out from Docker Hub
         run: docker logout
