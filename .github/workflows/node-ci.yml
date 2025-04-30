@@ -13,3 +13,5 @@ jobs:
           node-version: '18'
       - run: npm install
       - run: npm test
+      - uses: docker/setup-buildx-action@v3.10.0
+        
