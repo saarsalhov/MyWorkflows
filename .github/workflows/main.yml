@@ -15,3 +15,9 @@ jobs:
       - name: List files in the repository
         run: ls ${{ github.workspace }}
       - run: echo "🍏 This job's status is ${{ job.status }}."
+  call-deploy:
+    uses: saarsalhov/MyWorkflows/.github/workflows/inputs-context-reusable-workflow.yml@main
+    with:
+      build_id: 12345
+      deploy_target: "production"
+      perform_deploy: true
