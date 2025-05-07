@@ -21,3 +21,4 @@ jobs:
       build_id: 12345
       deploy_target: "production"
       perform_deploy: true
+      test: "test"
